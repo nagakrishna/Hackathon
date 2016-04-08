@@ -1,0 +1,15 @@
+<ion-view view-title="Login">
+    <ion-nav-bar class="bar-calm" align-title="center">
+</ion-nav-bar>
+  <ion-content class="padding">
+        <label class="item item-input">
+              <input type="email" placeholder="Username" ng-model="email">
+        </label>
+        <label class="item item-input">
+              <input type="password" placeholder="Password" ng-model="password">
+        </label>
+  <button class="button button-block button-calm" ng-click="login(email, password)">Login</button>
+      <button class="button button-block button-calm" ng-click="register()">Register</button>
+      <button class="button button-block button-calm" ng-click="resetPassword(email)">Forgot Password</button>
+  </ion-content>
+</ion-view>

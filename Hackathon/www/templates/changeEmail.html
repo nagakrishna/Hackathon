@@ -1,0 +1,15 @@
+<ion-view view-title="Change Email">
+    <ion-nav-bar class="bar-calm" align-title="center">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+</ion-nav-bar>
+  <ion-content class="padding">
+        <label class="item item-input">
+              <input type="email" placeholder="New Email" ng-model="email">
+        </label>
+        <label class="item item-input">
+              <input type="password" placeholder="Password" ng-model="password">
+        </label>
+  <button class="button button-block button-calm" ng-click="changeEmailNew(email, password)">Submit</button>
+  </ion-content>
+</ion-view>
