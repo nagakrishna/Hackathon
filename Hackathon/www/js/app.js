@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic', 'ngCordova', 'firebase', 'ngStorage', 'ui.bootstrap'])
+var app = angular.module('starter', ['ionic', 'ngCordova', 'firebase', 'ngStorage', 'ui.bootstrap','ngAnimate'])
 
 var fb = new Firebase("https://aselab9.firebaseio.com/"); //ur firebase url
 
@@ -191,7 +191,7 @@ $scope.register = function() {
 
 });
 
-app.controller('HomeController', function($scope, $state){
+app.controller('HomeController', function($scope, $state, $window, $filter,  $ionicPopover, $ionicPopup,$ionicLoading){
     $scope.account = function(){
         $state.go('account');
     }
@@ -199,13 +199,39 @@ app.controller('HomeController', function($scope, $state){
         $state.go('login');
     }
     
-    $scope.change = function(){
-        console.log($scope.dt);
-    }
+
     
+    var a=[];
+    a[0] = 15;
+    a[1] = 6
+     $scope.changedate = function(date){
+       
+$scope.endDateMinDate = date;
+$scope.$broadcast('refreshDatepickers');
+
+  $scope.dateOptions = {
+    dateDisabled: disabled,
+    formatYear: 'yy',
+    maxDate: new Date(2016, 7, 1),
+    minDate: new Date(),
+    startingDay: 1
+  };
+  
+   function disabled(data) {
+    var date = data.date,
+      mode = data.mode;  
+    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6 || date.getDate() === a[0] || date.getDate() === a[0] ||
+    date.getDate === a[1]|| date.getDate() === a[2] || date.getDate() === a[3] || date.getDate() === a[5] || date.getDate() === a[6] ) ;
+  }
+        
+         console.log(date.getDate() + 'getday' + date.getDay() + '/' + date) ;
+        console.log('month ' + $filter('date')(date, 'MM') + ' day' + $filter('date')(date, 'dd') +
+        ' year' +  $filter('date')(date,'yyyy'));
+        };
+        
     $scope.today = function() {
     $scope.dt = new Date();
-    console.log($scope.dt);
+    console.log("first " + $scope.dt);
   };
   $scope.today();
 
@@ -223,19 +249,21 @@ app.controller('HomeController', function($scope, $state){
     dateDisabled: disabled,
     formatYear: 'yy',
     maxDate: new Date(2016, 4, 10),
-    minDate: new Date(),
+    min: new Date(2016, 3, 10),
+    // minDate: new Date($filter('date')($scope.dt,'yyyy'),$filter('date')($scope.dt, 'MM'), $filter('date')($scope.dt, 'dd')),
     startingDay: 1
   };
+
 
   // Disable weekend selection
   function disabled(data) {
     var date = data.date,
       mode = data.mode;  
-    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6 || date.getDate() == 22) ;
   }
 
   $scope.toggleMin = function() {
-    // $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
     $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
   };
  
