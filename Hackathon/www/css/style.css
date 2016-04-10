@@ -1,1 +1,23 @@
 /* Empty. Add your own CSS if you like */
+ul#menu {
+    padding: 0;
+}
+
+ul#menu li {
+    display: inline;
+}
+
+
+
+.available{
+     background-color: green;
+     width: 80px
+    /*padding: 10px 10px;*/
+}
+
+.unavailable{
+    background-color: red;
+    
+}
+
+
