@@ -1,10 +1,12 @@
-<ion-view cache-view="false" view-title="Login">
-    <ion-nav-bar class="bar-calm" align-title="center">
-</ion-nav-bar>
-  <div style="padding-top: 100px">
+
+<ion-view cache-view="false" view-title="Select Time Slots">
+
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <center> 
       
+        <div style="padding-top: 100px; padding-bottom:20px;">
       
-   <ul id="menu">
+          <ul id="menu">
   <li><button class="available" id="a8am" ng-click="a8am()">8:00 am</button></li>
   <li><button class="available" id="a9am" ng-click="a9am()">9:00 am</button></li>
   <li><button class="available" id="a10am" ng-click="a10am()">10:00 am</button></li>
@@ -22,10 +24,12 @@
 <li><button class="available" id="a6pm" ng-click="a6pm()">6:00 pm</button></li>
 <li><button class="available" id="a7pm" ng-click="a7pm()">7:00 pm</button></li>
 </ul>
-  </div>
+      </div>
   
  
   
-  <button ng-click="done()">Done</button>
-  </ion-content>
+  <button class="button button-outline icon-right ion-chevron-right button-balanced" ng-click="done()">Pick Time Slot</button>
+        </center> 
+      
+        </ion-content>
 </ion-view>
