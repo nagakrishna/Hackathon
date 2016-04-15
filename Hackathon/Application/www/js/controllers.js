@@ -561,7 +561,7 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
 })
 
 .controller('Naga', function($scope, $state, $http, $localStorage,  $cordovaSms, $ionicPlatform){
-        
+//        
   
         
         var b8am = false, b11am = false, b12pm = false, b1pm = false;
