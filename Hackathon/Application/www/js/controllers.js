@@ -562,9 +562,7 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
 
 .controller('Naga', function($scope, $state, $http, $localStorage,  $cordovaSms, $ionicPlatform){
         
-    //     var api_key = 'key-XXXXXXXXXXXXXXXXXXXXXXX';
-    // var domain = 'mydomain.mailgun.org';
-    // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+  
         
         var b8am = false, b11am = false, b12pm = false, b1pm = false;
         var b9am = false, b2pm = false, b3pm = false, b4pm = false;
