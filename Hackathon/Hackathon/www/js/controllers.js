@@ -1,7 +1,13 @@
 angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage', 'ui.bootstrap','ngAnimate'])
   
 .controller('bookingHistoryCtrl', function($scope, $state, $http, $localStorage){
-        $scope.itemsList = [];
+    $scope.$on('$ionicView.beforeEnter', function(){
+        $scope.firstLoad()
+    });
+    
+    
+        $scope.firstLoad = function(){
+            $scope.itemsList = [];
         var d1 = [], d2=[],d3=[],d4=[];
         var e1 = [], e2=[],e3=[],e4=[];
         // var url = "http://localhost:8075/MongoRestServiceExample/restService/user";
@@ -17,7 +23,7 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
                         }
                         
                         var countNew = 0;
-            for(i=0;i<d1.length;i++){
+            for(i=d1.length-1;i>=0;i--){
                 if(d4[i] == $localStorage.email){
                     e1[countNew] = d1[i];
                     e2[countNew] = d2[i];
@@ -47,6 +53,8 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
                     console.log(result);
                 });
 
+        }
+    
     $scope.itemList; 
     })
 .controller('accountSettingCtrl', function($scope, $state, $cordovaToast, $localStorage){
@@ -66,35 +74,35 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
                     switch (error.code) {
                     case "INVALID_PASSWORD":
                         console.log("The specified user account password is incorrect.");
-                        $cordovaToast.show('The specified user account password is incorrect.', 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                         console.log("The toast was not shown due to " + error);
-                         });
+                        // $cordovaToast.show('The specified user account password is incorrect.', 'short', 'bottom').then(function(success) {
+                        //     console.log("The toast was shown");
+                        // }, function (error) {
+                        //  console.log("The toast was not shown due to " + error);
+                        //  });
                         break;
                     case "INVALID_USER":
                         console.log("The specified user account does not exist.");
-                         $cordovaToast.show('The specified user account does not exist.', 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                         console.log("The toast was not shown due to " + error);
-                         });
+                        //  $cordovaToast.show('The specified user account does not exist.', 'short', 'bottom').then(function(success) {
+                        //     console.log("The toast was shown");
+                        // }, function (error) {
+                        //  console.log("The toast was not shown due to " + error);
+                        //  });
                         break;
                     default:
                         console.log("Error changing password:", error);
-                          $cordovaToast.show('Error changing password:' + error, 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                         console.log("The toast was not shown due to " + error);
-                         });
+                        //   $cordovaToast.show('Error changing password:' + error, 'short', 'bottom').then(function(success) {
+                        //     console.log("The toast was shown");
+                        // }, function (error) {
+                        //  console.log("The toast was not shown due to " + error);
+                        //  });
                     }
                 } else {
                     console.log("User password changed successfully!");
-                     $cordovaToast.show('User password changed successfully!', 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                         console.log("The toast was not shown due to " + error);
-                         });
+                    //  $cordovaToast.show('User password changed successfully!', 'short', 'bottom').then(function(success) {
+                    //         console.log("The toast was shown");
+                    //     }, function (error) {
+                    //      console.log("The toast was not shown due to " + error);
+                    //      });
                     $state.go('menu.accountSetting');
                 }
                 });
@@ -114,35 +122,35 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
                     switch (error.code) {
                     case "INVALID_PASSWORD":
                         console.log("The specified user account password is incorrect.");
-                          $cordovaToast.show('The specified user account password is incorrect.', 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                         console.log("The toast was not shown due to " + error);
-                         });
+                        //   $cordovaToast.show('The specified user account password is incorrect.', 'short', 'bottom').then(function(success) {
+                        //     console.log("The toast was shown");
+                        // }, function (error) {
+                        //  console.log("The toast was not shown due to " + error);
+                        //  });
                         break;
                     case "INVALID_USER":
                         console.log("The specified user account does not exist.");
-                         $cordovaToast.show('The specified user account does not exist.', 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                         console.log("The toast was not shown due to " + error);
-                         });
+                        //  $cordovaToast.show('The specified user account does not exist.', 'short', 'bottom').then(function(success) {
+                        //     console.log("The toast was shown");
+                        // }, function (error) {
+                        //  console.log("The toast was not shown due to " + error);
+                        //  });
                         break;
                     default:
                         console.log("Error creating user:", error);
-                        $cordovaToast.show('Error creating user:' + error, 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                        console.log("The toast was not shown due to " + error);
-                        });
+                        // $cordovaToast.show('Error creating user:' + error, 'short', 'bottom').then(function(success) {
+                        //     console.log("The toast was shown");
+                        // }, function (error) {
+                        // console.log("The toast was not shown due to " + error);
+                        // });
                     }
                 } else {
                     console.log("User email changed successfully!");
-                      $cordovaToast.show('User email changed successfully!', 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                         console.log("The toast was not shown due to " + error);
-                         });
+                    //   $cordovaToast.show('User email changed successfully!', 'short', 'bottom').then(function(success) {
+                    //         console.log("The toast was shown");
+                    //     }, function (error) {
+                    //      console.log("The toast was not shown due to " + error);
+                    //      });
                     $localStorage.email = newEmail;
                     $state.go('menu.accountSetting');
                 }
@@ -427,53 +435,46 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
             //admin
             if(email == 'admin@mail.com' && password=='password'){
                 $state.go('admin');
-                console.log('admin' + email);
+                //    $cordovaToast.show('Login Successful', 'short', 'bottom').then(function(success) {
+                //     console.log("The toast was shown");
+                // }, function (error) {
+                //     console.log("The toast was not shown due to " + error);
+                // });
             }
-            // else{
-                console.log('no');
-                     $localStorage.email = email;
-            fbAuth.$authWithPassword({
+            else{
+                
+                $localStorage.email = email;
+                
+                 c++;
+                if(c==3){
+                    $scope.resetPassword(email);
+                }
+                
+                else{
+                       fbAuth.$authWithPassword({
                 email: email,
                 password: password
             }).then(function(authData) { 
-                c = 0;
-                    $cordovaToast.show('Login Successful', 'short', 'bottom').then(function(success) {
-                    console.log("The toast was shown");
-                }, function (error) {
-                    console.log("The toast was not shown due to " + error);
-                });
+                
+                //     $cordovaToast.show('Login Successful', 'short', 'bottom').then(function(success) {
+                //     console.log("The toast was shown");
+                // }, function (error) {
+                //     console.log("The toast was not shown due to " + error);
+                // });
                     $state.go('menu.home');
             }).catch(function(error) {
-            //      $cordovaToast.show(error, 'long', 'bottom').then(function(success) {
+            //      $cordovaToast.show('Please check your username and password', 'short', 'bottom').then(function(success) {
             //     console.log("The toast was shown");
             // }, function (error) {
             //     console.log("The toast was not shown due to " + error);
             // });
                 console.error("ERROR: " + error);
-                c++;
-                if(c==2){
-                    fb.removeUser({
-                        email: "bobtony@firebase.com",
-                        password: "correcthorsebatterystaple"
-                        }, function(error) {
-                        if (error) {
-                            switch (error.code) {
-                            case "INVALID_USER":
-                                console.log("The specified user account does not exist.");
-                                break;
-                            case "INVALID_PASSWORD":
-                                console.log("The specified user account password is incorrect.");
-                                break;
-                            default:
-                                console.log("Error removing user:", error);
-                            }
-                        } else {
-                            console.log("User account deleted successfully!");
-                        }
-                        });
-                }
+               
             });
-            // }
+                }
+                     
+         
+            }
        
         }
     
@@ -493,23 +494,23 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
                     switch (error.code) {
                     case "INVALID_USER":
                     console.log("The specified user account does not exist.");
-                        $cordovaToast.show('The specified user account does not exist.', 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                         console.log("The toast was not shown due to " + error);
-                         });
+                        // $cordovaToast.show('The specified user account does not exist.', 'short', 'bottom').then(function(success) {
+                        //     console.log("The toast was shown");
+                        // }, function (error) {
+                        //  console.log("The toast was not shown due to " + error);
+                        //  });
                         break;
                     default:
                 console.log("Error resetting password:", error);
-                        $cordovaToast.show('Error resetting password:' + error, 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                         console.log("The toast was not shown due to " + error);
-                         });
+                        // $cordovaToast.show('Error resetting password:' + error, 'short', 'bottom').then(function(success) {
+                        //     console.log("The toast was shown");
+                        // }, function (error) {
+                        //  console.log("The toast was not shown due to " + error);
+                        //  });
                 }
                 } else {
                 console.log("Password reset email sent successfully!");
-                //   $cordovaToast.show('Password reset email sent successfully!', 'short', 'bottom').then(function(success) {
+                //   $cordovaToast.show('Your password has been reset. Please check your email for further details!', 'short', 'bottom').then(function(success) {
                 //             console.log("The toast was shown");
                 //         }, function (error) {
                 //          console.log("The toast was not shown due to " + error);
@@ -524,27 +525,27 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
     $scope.pageClass = 'register';
     var fbAuth = $firebaseAuth(fb);
 
-    $scope.register = function() {
-            fbAuth.$createUser({email: $scope.email, password: $scope.password}).then(function(userData) {
+    $scope.register = function(email, password) {
+            fbAuth.$createUser({email: email, password: password}).then(function(userData) {
                 return fbAuth.$authWithPassword({
-                    email: $scope.email,
-                    password: $scope.password
+                    email: email,
+                    password: password
                 });
             }).then(function(authData) {
                 console.log("Registration successfull!");
-                  $cordovaToast.show('Registration successfull!', 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                         console.log("The toast was not shown due to " + error);
-                         });
+                //   $cordovaToast.show('Registration successfull!', 'short', 'bottom').then(function(success) {
+                //             console.log("The toast was shown");
+                //         }, function (error) {
+                //          console.log("The toast was not shown due to " + error);
+                //          });
                 $state.go('login');
             }).catch(function(error) {
                 console.error("ERROR: " + error);
-                $cordovaToast.show(error, 'short', 'bottom').then(function(success) {
-                            console.log("The toast was shown");
-                        }, function (error) {
-                         console.log("The toast was not shown due to " + error);
-                         });
+                // $cordovaToast.show(error, 'short', 'bottom').then(function(success) {
+                //             console.log("The toast was shown");
+                //         }, function (error) {
+                //          console.log("The toast was not shown due to " + error);
+                //          });
             });
         }
     
@@ -838,31 +839,24 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
                 // $state.transitionTo('home', null, {'reload':true});
                 // $state.go('home', {}, { reload: true });
                 
-    //             $cordovaSms
-    //   .send('+18167037557', $localStorage.email + ' requested timeslots' + k + 'on' + $localStorage.dateSelected  , options)
-    //   .then(function() {
-    //     alert('sms sent');
+
+    //  var options = {
+    //         replaceLineBreaks: false, // true to replace \n by a new line, false by default
+    //         android: {
+    //             intent: 'INTENT'  // send SMS with the native android SMS messaging
+    //             //intent: '' // send SMS without open any other app
+    //         }
+    //     };
+    // $ionicPlatform.ready(function(){
+    //   $cordovaSms
+    //   .send('+18167037557', $localStorage.email + ' requested timeslots' + k + ' on ' + $localStorage.dateSelected + ' for ' + $scope.room , options)
+    //   .then(function(result) {
+    //     console.log(result);
+        
     //   }, function(error) {
-    //     alert('sms failed')
-    //   });
-        
-     var options = {
-            replaceLineBreaks: false, // true to replace \n by a new line, false by default
-            android: {
-                intent: 'INTENT'  // send SMS with the native android SMS messaging
-                //intent: '' // send SMS without open any other app
-            }
-        };
-    $ionicPlatform.ready(function(){
-      $cordovaSms
-      .send('+18167037557', $localStorage.email + ' requested timeslots' + k + ' on ' + $localStorage.dateSelected  , options)
-      .then(function(result) {
-        console.log(result);
-        
-      }, function(error) {
-        console.log(error);
-      })
-    })
+    //     console.log(error);
+    //   })
+    // })
   
                 $state.go('menu.home');
         }
@@ -873,6 +867,9 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
     
     .controller('adminCtrl', function($scope, $state, $localStorage, $http, $filter){
         
+        $scope.logout = function(){
+            $state.go('login')
+        }
         
         $scope.AdminitemList = [];
         var f1 = [], f2=[],f3=[],f4=[];
@@ -942,11 +939,11 @@ angular.module('app.controllers', ['ionic', 'ngCordova', 'firebase', 'ngStorage'
             
             if(countNew==0){
                 document.getElementById('Adminbookingcount').style.display = 'none'; 
-                document.getElementById('AdminnobookingcountToday').style.display = 'block';
+                document.getElementById('Adminnobookingcount').style.display = 'block';
             }
             else{
                  document.getElementById('Adminbookingcount').style.display = 'block'; 
-                document.getElementById('AdminnobookingcountToday').style.display = 'none';
+                document.getElementById('Adminnobookingcount').style.display = 'none';
             }
             console.log("user date" + g1);
             console.log("user time" + g2);
